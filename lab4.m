@@ -5,7 +5,7 @@ n=7;
 N=n^2;
 eps=1.e-5;
 A=gallery('poisson', n)
-%Ìåòîä ßêîáè
+%ÃŒÃ¥Ã²Ã®Ã¤ ÃŸÃªÃ®Ã¡Ã¨
 B=spdiags(diag(A),0,N,N);
 D=(inv(B))*A;
 f =rand(N,1);
@@ -22,7 +22,7 @@ while (err>eps & k<1000)
     k=k+1;
     Err(k)=err;
 end
-%Ìåòîä Çåéäåëÿ
+%ÃŒÃ¥Ã²Ã®Ã¤ Ã‡Ã¥Ã©Ã¤Ã¥Ã«Ã¿
 C=triu(A);
 D=(inv(C))*A;
 f =rand(N,1);
@@ -39,9 +39,11 @@ while (err>eps & k2<1000)
     k2=k2+1;
     Err2(k2)=err;
 end
-%Ïîïåðåìåííî òðåóãîëüíûé ìåòîä
-R1=triu(A);
-R2=tril(A);
+%ÃÃ®Ã¯Ã¥Ã°Ã¥Ã¬Ã¥Ã­Ã­Ã® Ã²Ã°Ã¥Ã³Ã£Ã®Ã«Ã¼Ã­Ã»Ã© Ã¬Ã¥Ã²Ã®Ã¤
+R=triu(A);
+R1=R/2;
+RR=tril(A);
+R2=RR/2;
 O=eye(N);
 E=(O+0.5*R1)*(O+0.5*R2);
 D=(inv(E))*A;
@@ -60,4 +62,4 @@ while (err>eps & k3<1000)
     Err3(k3)=err;
 end
 semilogy(1:k, Err, 1:k2,Err2,1:k3,Err3)
-legend('ßêîáè','Çåéäåëÿ','òðåóãîëüíûé');
+legend('ÃŸÃªÃ®Ã¡Ã¨','Ã‡Ã¥Ã©Ã¤Ã¥Ã«Ã¿','Ã²Ã°Ã¥Ã³Ã£Ã®Ã«Ã¼Ã­Ã»Ã©');
